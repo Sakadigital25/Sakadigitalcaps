@@ -7,7 +7,7 @@ void main() {
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "SakaDigital",
-      initialRoute: AppPages.INITIAL,
+      initialRoute: AppPages.initial,
       getPages: AppPages.routes,
     ),
   );

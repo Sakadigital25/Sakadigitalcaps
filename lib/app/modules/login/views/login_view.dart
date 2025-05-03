@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sakadigital/app/modules/login/controllers/login_controller.dart';
 
 class LoginView extends StatelessWidget {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final LoginController controller = Get.find<LoginController>(); // Mengambil instance dari controller
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Ganti jadi putih
+      backgroundColor: Colors.white,
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
@@ -34,7 +34,7 @@ class LoginView extends StatelessWidget {
               ),
               const SizedBox(height: 32),
               TextField(
-                controller: emailController,
+                controller: controller.emailController,
                 decoration: const InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(),
@@ -42,7 +42,7 @@ class LoginView extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               TextField(
-                controller: passwordController,
+                controller: controller.passwordController,
                 obscureText: true,
                 decoration: const InputDecoration(
                   labelText: 'Password',
@@ -89,7 +89,7 @@ class LoginView extends StatelessWidget {
                   minimumSize: const Size(160, 40),
                 ),
                 onPressed: () {
-                  // TODO: Add login logic
+                  controller.loginUser(); // Panggil loginUser di controller
                 },
                 child: const Text(
                   'Login',

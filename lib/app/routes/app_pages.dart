@@ -10,21 +10,21 @@ import '../modules/home/views/home_view.dart';
 part 'app_routes.dart';
 
 class AppPages {
-  static const INITIAL = Routes.LOGIN;
+  static const initial = Routes.login;
 
   static final routes = <GetPage>[
     GetPage(
-      name: _Paths.REGISTER,
-      page: () => const RegisterView(),
+      name: _Paths.register,
+      page: () => RegisterView(),
       binding: RegisterBinding(),
     ),
     GetPage(
-      name: _Paths.LOGIN,
+      name: _Paths.login,
       page: () => LoginView(),
       binding: LoginBinding(),
     ),
     GetPage(
-      name: _Paths.HOME,
+      name: _Paths.home,
       page: () => const HomeView(),
       binding: HomeBinding(),
     ),
