@@ -1,113 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sakadigital/app/modules/login/controllers/login_controller.dart';
+import '../controllers/auth_controller.dart';
 
 class LoginView extends StatelessWidget {
-  final LoginController controller = Get.find<LoginController>(); // Mengambil instance dari controller
+  final AuthController authController = Get.find<AuthController>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  LoginView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Sign In',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.brown,
-                ),
-              ),
-              const SizedBox(height: 4),
-              const Text(
-                'SAKADIGITAL',
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.brown,
-                ),
-              ),
-              const SizedBox(height: 32),
-              TextField(
-                controller: controller.emailController,
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 16),
-              TextField(
-                controller: controller.passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: 'Password',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 16),
-              const Align(
-                alignment: Alignment.center,
-                child: Text(
-                  'Lupa Password?',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text('Tidak memiliki akun?? ',
-                      style: TextStyle(color: Colors.grey)),
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed('/register');
+      appBar: AppBar(
+        title: const Text('Login Saka Digital'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: emailController,
+              decoration: const InputDecoration(labelText: 'Email'),
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: passwordController,
+              decoration: const InputDecoration(labelText: 'Password'),
+              obscureText: true,
+            ),
+            const SizedBox(height: 24),
+            Obx(() => authController.isLoading.value
+                ? const CircularProgressIndicator()
+                : ElevatedButton(
+                    onPressed: () {
+                      authController.login(
+                        emailController.text,
+                        passwordController.text,
+                      );
                     },
-                    child: const Text(
-                      'Sign Up',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.brown,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  minimumSize: const Size(160, 40),
-                ),
-                onPressed: () {
-                  controller.loginUser(); // Panggil loginUser di controller
-                },
-                child: const Text(
-                  'Login',
-                  style: TextStyle(fontSize: 16, color: Colors.white),
-                ),
-              ),
-              const SizedBox(height: 12),
-              TextButton(
-                onPressed: () {
-                  // TODO: Cancel or back to home
-                },
-                child: const Text(
-                  'Cancel',
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ),
-            ],
-          ),
+                    child: const Text('Login'),
+                  )),
+            TextButton(
+              onPressed: () {
+                Get.toNamed('/register');
+              },
+              child: const Text('Belum punya akun? Daftar'),
+            ),
+          ],
         ),
       ),
     );

@@ -1,32 +1,53 @@
 import 'package:get/get.dart';
-
-import '../modules/register/bindings/register_binding.dart';
-import '../modules/register/views/register_view.dart';
-import '../modules/login/bindings/login_binding.dart';
-import '../modules/login/views/login_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
-
-part 'app_routes.dart';
+import '../modules/berita/bindings/berita_binding.dart';
+import '../modules/berita/views/berita_view.dart';
+import '../modules/pembelajaran/bindings/pembelajaran_binding.dart';
+import '../modules/pembelajaran/views/pembelajaran_view.dart';
+import '../modules/deteksi/bindings/deteksi_binding.dart';
+import '../modules/deteksi/views/deteksi_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
+import '../modules/daftar/bindings/daftar_binding.dart';
+import '../modules/daftar/views/daftar_view.dart';
+import 'app_routes.dart';
 
 class AppPages {
-  static const initial = Routes.login;
+  AppPages._();
 
-  static final routes = <GetPage>[
+  static const initial = AppRoutes.home;
+
+  static final routes = [
     GetPage(
-      name: _Paths.register,
-      page: () => RegisterView(),
-      binding: RegisterBinding(),
-    ),
-    GetPage(
-      name: _Paths.login,
-      page: () => LoginView(),
-      binding: LoginBinding(),
-    ),
-    GetPage(
-      name: _Paths.home,
+      name: AppRoutes.home,
       page: () => const HomeView(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.berita,
+      page: () => const BeritaView(),
+      binding: BeritaBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.pembelajaran,
+      page: () => const PembelajaranView(),
+      binding: PembelajaranBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.deteksi,
+      page: () => const DeteksiView(),
+      binding: DeteksiBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.profile,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.daftar,
+      page: () => const DaftarView(),
+      binding: DaftarBinding(),
     ),
   ];
 }

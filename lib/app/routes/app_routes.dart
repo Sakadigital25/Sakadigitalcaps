@@ -1,16 +1,21 @@
-part of 'app_pages.dart';
-// DO NOT EDIT. This is code generated via package:get_cli/get_cli.dart
+abstract class AppRoutes {
+  AppRoutes._();
 
-abstract class Routes {
-  Routes._();
-  static const register = _Paths.register;
-  static const login    = _Paths.login;
-  static const home     = _Paths.home;
+  static const home = _Paths.home;
+  static const berita = _Paths.berita;
+  static const pembelajaran = _Paths.pembelajaran;
+  static const deteksi = _Paths.deteksi;
+  static const profile = _Paths.profile;
+  static const daftar = _Paths.daftar;
 }
 
 abstract class _Paths {
   _Paths._();
-  static const register = '/register';
-  static const login    = '/login';
-  static const home     = '/home';
+
+  static const home = '/home';
+  static const berita = '/berita';
+  static const pembelajaran = '/pembelajaran';
+  static const deteksi = '/deteksi';
+  static const profile = '/profile';
+  static const daftar = '/daftar';
 }
