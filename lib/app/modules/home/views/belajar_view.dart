@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
 class BelajarView extends StatelessWidget {
+  const BelajarView({Key? key}) : super(key: key);  // Menambahkan key sebagai parameter
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("📘 Halaman Pembelajaran Smapoer", style: TextStyle(fontSize: 20)),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Belajar'),
+      ),
+      body: Center(child: Text('Halaman Belajar')),
     );
   }
 }

@@ -1,6 +1,6 @@
   import 'package:flutter/material.dart';
   import 'package:get/get.dart';
-  import 'package:lucide_icons/lucide_icons.dart';
+  import 'package:flutter_icons/flutter_icons.dart'; // Using flutter_icons instead of lucide_icons
 
   import '../controllers/home_controller.dart';
 

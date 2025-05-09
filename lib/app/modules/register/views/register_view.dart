@@ -26,69 +26,92 @@ class RegisterView extends GetView<RegisterController> {
                 ),
               ),
               const SizedBox(height: 25),
-
-              _textField(controller.nameController, "Nama Lengkap"),
+              TextFormField(
+                controller: controller.name,
+                decoration: InputDecoration(
+                  labelText: "Nama Lengkap",
+                  border: OutlineInputBorder(),
+                ),
+              ),
               const SizedBox(height: 15),
-
-              _textField(controller.emailController, "Alamat Email"),
+              TextFormField(
+                controller: controller.email,
+                decoration: InputDecoration(
+                  labelText: "Alamat Email", 
+                  border: OutlineInputBorder(),
+                ),
+              ),
               const SizedBox(height: 15),
 
               // Dropdown untuk Provinsi
-              Obx(() => DropdownButtonFormField<String>(
-                value: controller.selectedProvinsi.value.isEmpty
-                    ? null
-                    : controller.selectedProvinsi.value,
-                items: controller.provinsi
-                    .map((prov) => DropdownMenuItem(
+              Obx(
+                () => DropdownButtonFormField<String>(
+                  value: controller.selectedProvinsi.value.isEmpty
+                      ? null
+                      : controller.selectedProvinsi.value,
+                  items: controller.provinsi
+                      .map(
+                        (prov) => DropdownMenuItem(
                           value: prov,
                           child: Text(prov),
-                        ))
-                    .toList(),
-                onChanged: (val) => controller.onProvinsiSelected(val!),
-                decoration: _dropdownDecoration("Provinsi"),
-              )),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (val) => controller.onProvinsiSelected(val!),
+                  decoration: _dropdownDecoration("Provinsi"),
+                ),
+              ),
               const SizedBox(height: 10),
 
               // Dropdown untuk Kota
-              Obx(() => DropdownButtonFormField<String>(
-                value: controller.selectedKota.value.isEmpty
-                    ? null
-                    : controller.selectedKota.value,
-                items: controller.kota
-                    .map((city) => DropdownMenuItem(
+              Obx(
+                () => DropdownButtonFormField<String>(
+                  value: controller.selectedKota.value.isEmpty
+                      ? null
+                      : controller.selectedKota.value,
+                  items: controller.kota
+                      .map(
+                        (city) => DropdownMenuItem(
                           value: city,
                           child: Text(city),
-                        ))
-                    .toList(),
-                onChanged: (val) => controller.onKotaSelected(val!),
-                decoration: _dropdownDecoration("Kabupaten/Kota"),
-              )),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (val) => controller.onKotaSelected(val!),
+                  decoration: _dropdownDecoration("Kabupaten/Kota"),
+                ),
+              ),
               const SizedBox(height: 15),
 
-              _textField(controller.schoolController, "Nama Sekolah (Ketik Manual)"),
+              _textField(
+                controller.schoolController,
+                "Nama Sekolah (Ketik Manual)",
+              ),
               const SizedBox(height: 15),
 
               // Dropdown untuk Role (Tingkatan)
-              Obx(() => DropdownButtonFormField<String>(
-                value: controller.selectedRole.value.isEmpty
-                    ? null
-                    : controller.selectedRole.value,
-                items: controller.role
-                    .map((lvl) => DropdownMenuItem(
-                          value: lvl,
-                          child: Text(lvl),
-                        ))
-                    .toList(),
-                onChanged: (val) => controller.selectedRole.value = val!,
-                decoration: _dropdownDecoration("Tingkatan"),
-              )),
+              Obx(
+                () => DropdownButtonFormField<String>(
+                  value: controller.selectedRole.value.isEmpty
+                      ? null
+                      : controller.selectedRole.value,
+                  items: controller.role
+                      .map(
+                        (lvl) => DropdownMenuItem(value: lvl, child: Text(lvl)),
+                      )
+                      .toList(),
+                  onChanged: (val) => controller.selectedRole.value = val!,
+                  decoration: _dropdownDecoration("Tingkatan"),
+                ),
+              ),
               const SizedBox(height: 30),
 
               SizedBox(
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: controller.registerUser, // Memanggil fungsi dari controller
+                  onPressed: controller
+                      .registerUser, // Memanggil fungsi dari controller
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.brown[700],
                     shape: RoundedRectangleBorder(
@@ -98,7 +121,9 @@ class RegisterView extends GetView<RegisterController> {
                   child: const Text(
                     'DAFTAR',
                     style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
